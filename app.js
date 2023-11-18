@@ -2,18 +2,18 @@ function createBoard (firstName,secondName) {
     let gameBoard=[["","",""],
                    ["","",""],
                    ["","",""]];
-    let firstPlayer = createPlayer(firstName);
-    let firstPlayerSymbol = "X";
-    let secondPlayer = createPlayer(secondName);
-    let secondPlayerSymbol = "O";
+    let firstPlayer = createPlayer(firstName,"X");
+    let secondPlayer = createPlayer(secondName,"O");
+   
   
     return {};
   }
 
-function createPlayer (name) {
-    const Player = name;
+function createPlayer (name,playerSymbol) {
+    const playerSymbol = playerSymbol;
+    let point = 0;
     const getPoint = () => point;
     const givePoint = () => point++;
   
-    return {Player,playerSymbol,playerScore};
+    return {name,playerSymbol,getPoint,givePoint};
   }

@@ -1,0 +1,20 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: white;
+
+}
+
+#title{
+    font-size: 4rem;
+}
+
+#title-holder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

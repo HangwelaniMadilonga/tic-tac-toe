@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 body{
@@ -10,11 +11,30 @@ body{
 }
 
 #title{
-    font-size: 4rem;
+    font-size: 3rem;
 }
 
 #title-holder{
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 3rem;
+}
+.game-container{
+display: grid;
+grid-template-areas: 'one two three';                
+justify-content: center;
+align-items: center;
+gap: 0.015rem;
+}
+
+.cell{
+    min-width: 3rem;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    background-color: rgb(50, 47, 47);
+    border-radius: 0.5rem;
+    padding: 0.7rem;
+    margin: 0.2rem;
 }

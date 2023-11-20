@@ -4,7 +4,12 @@ function createBoard (firstName,secondName){
                    ["","",""]];
     let firstPlayer = createPlayer(firstName,"X");
     let secondPlayer = createPlayer(secondName,"O");
-    return {};
+   
+    function initialiseBoard(){
+        gameBoard.forEach((cell) => {
+            
+        });
+    };
   }
 
 function createPlayer (name,playerSymbol){
@@ -14,6 +19,5 @@ function createPlayer (name,playerSymbol){
     const givePoint = () => point++;
   
     return {name,playerSymbol,getPoint,givePoint};
-  }
-
+  };
   

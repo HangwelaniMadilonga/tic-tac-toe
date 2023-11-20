@@ -33,8 +33,9 @@ gap: 0.015rem;
     display: flex;
     justify-content:center;
     align-items: center;
-    background-color: rgb(50, 47, 47);
+    background-color: rgb(235, 228, 228);
     border-radius: 0.5rem;
     padding: 0.7rem;
-    margin: 0.2rem;
+    margin: 0.1rem;
+    font-style: italic;
 }

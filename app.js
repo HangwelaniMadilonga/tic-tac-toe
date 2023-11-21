@@ -1,3 +1,6 @@
+let playGame = () => {};
+
+
 function createBoard (firstName,secondName){
     let gameBoard=[["","",""],
                    ["","",""],
@@ -7,7 +10,8 @@ function createBoard (firstName,secondName){
    
     function initialiseBoard(){
         gameBoard.forEach((cell) => {
-            
+            const div = document.createElement('div');
+            div.classList.add('cell'); 
         });
     };
   }

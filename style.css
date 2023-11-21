@@ -12,6 +12,7 @@ body{
 
 #title{
     font-size: 3rem;
+    color:grey;
 }
 
 #title-holder{
@@ -83,6 +84,14 @@ justify-content: center;
     border-width: 0.01rem;
     cursor: pointer;
     background-color: rgb(198, 194, 194);
+}
+
+#game-selection-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1rem;
+    color:grey;
 }
 
 @keyframes myAnim {

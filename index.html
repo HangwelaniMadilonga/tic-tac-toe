@@ -1,38 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>tic-tac-toe</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="title-holder">
-        <p id="title">Tic-Tac-Toe</p>
+      <p id="title">Tic-Tac-Toe</p>
     </div>
-    <div class="game-container">
-        <!-- <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div> -->
-        
+    <div class="game-container" class="second-display"></div>
+    <div id="game-selection-container" class="first-display">
+      <p id="game-selection">Choose game type :</p>
     </div>
-    <div id="game-selection-container">
-        <p id="game-selection">Choose game type :</p>
+    <div id="player-selection-container" class="first-display">
+      <div id="player-selection">
+        <button class="selection-button">player vs player</button>
+        <button class="selection-button">player vs computer</button>
+      </div>
     </div>
-    <div id="player-selection-container">
-        <div id="player-selection">
-            <button class="selection-button">player vs player</button>
-            <button class="selection-button">player vs computer</button>
-        </div>
-    </div>
-    
 
-<script src="app.js"></script>
-</body>
+    <script src="app.js"></script>
+  </body>
 </html>

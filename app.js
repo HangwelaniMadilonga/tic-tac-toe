@@ -44,7 +44,14 @@ let controlScreen = (gameBoard, playerSymbol) => {
     }
   };
 
-  let beginGame = () => {};
+  let beginGame = () => {
+    let gametypeButtons = document.querySelectorAll(".selection-button");
+    gametypeButtons.forEach((element) => {
+      element.addEventListener("click", () => {
+        addGameBoard();
+      });
+    });
+  };
 };
 
 let;

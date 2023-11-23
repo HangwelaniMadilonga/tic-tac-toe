@@ -11,17 +11,14 @@ function createBoard() {
   let firstPlayer = createPlayer("X");
   let secondPlayer = createPlayer("O");
   let computerPlayer = createPlayer("O");
-  let isFirstTurn = true;
-  let isPlaying = true;
 
-  if (isFirstTurn) {
-    let screen = controlScreen(gameBoard, firstPlayer.playerSymbol);
-    screen.beginGame();
-    isFirstTurn = !isFirstTurn;
-  } else {
-    let screen = controlScreen(gameBoard, secondPlayer.playerSymbol);
-    isFirstTurn = !isFirstTurn;
-  }
+  let isPlaying = true;
+  let screen = controlScreen(
+    gameBoard,
+    firstPlayer.playerSymbol,
+    secondPlayer.playerSymbol
+  );
+  screen.beginGame();
 }
 
 function createPlayer(playerSymbol) {
@@ -31,9 +28,11 @@ function createPlayer(playerSymbol) {
   return { playerSymbol, getPoint, givePoint };
 }
 
-let controlScreen = (gameBoard, playerSymbol) => {
+let controlScreen = (gameBoard, firstplayerSymbol, secondplayerSymbol) => {
   let addGameBoard = () => {
     let gameContainer = document.querySelector(".game-container");
+    let gameTracker = 1;
+    let playerSymbol = "";
     while (gameContainer.firstChild) {
       gameContainer.removeChild(gameContainer.firstChild);
     }
@@ -45,10 +44,18 @@ let controlScreen = (gameBoard, playerSymbol) => {
         div.setAttribute("data-index", `${i}-${j}`);
         gameContainer.appendChild(div);
         div.addEventListener("click", () => {
+          if (gameTracker % 2 === 0) {
+            playerSymbol = secondplayerSymbol;
+          } else {
+            playerSymbol = firstplayerSymbol;
+          }
           const dataIndex = div.dataset.index;
           const [i, j] = dataIndex.split("-").map(Number);
-          gameBoard[i][j] = playerSymbol;
-          div.textContent = gameBoard[i][j];
+          if (div.textContent === "") {
+            gameBoard[i][j] = playerSymbol;
+            div.textContent = gameBoard[i][j];
+            gameTracker = gameTracker + 1;
+          }
         });
       }
     }
@@ -69,6 +76,6 @@ let controlScreen = (gameBoard, playerSymbol) => {
 };
 playGame();
 /*
-  we cant use a number because it i
+  for every div with class cell we can say that if the number is odd then it
 
   sdf*/

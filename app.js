@@ -164,4 +164,19 @@ function checkWinOrDraw(board) {
   return { win: false, draw: false };
 }
 
+let resetGame = () => {
+  for (let i = 0; i < gameBoard.length; i++) {
+    for (let j = 0; j < gameBoard[i].length; j++) {
+      gameBoard[i][j] = null;
+    }
+  }
+
+  let gameContainer = document.querySelector(".game-container");
+  while (gameContainer.firstChild) {
+    gameContainer.removeChild(gameContainer.firstChild);
+  }
+
+  addGameBoard();
+};
+
 playGame();

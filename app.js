@@ -74,6 +74,7 @@ let controlScreen = (gameBoard, firstplayerSymbol, secondplayerSymbol) => {
 
   return { beginGame };
 };
+
 playGame();
 /*
   for every div with class cell we can say that if the number is odd then it

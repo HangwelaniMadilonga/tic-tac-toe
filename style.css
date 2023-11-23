@@ -29,7 +29,7 @@ body {
 }
 
 .cell {
-  min-width: 9rem;
+  width: 9rem;
   display: flex;
   justify-content: center;
   align-items: center;

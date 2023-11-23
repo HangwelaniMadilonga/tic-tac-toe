@@ -64,9 +64,15 @@ let controlScreen = (gameBoard, firstplayerSymbol, secondplayerSymbol) => {
     let result = checkWinOrDraw(gameBoard);
     if (result.win) {
       highlightWinningCells(result.winningCombination);
-      alert(result.winner + " wins!");
+      setTimeout(() => {
+        alert(result.winner + " wins!");
+        resetGame();
+      }, 200);
     } else if (result.draw) {
-      alert("It's a draw!");
+      setTimeout(() => {
+        alert("It's a draw!");
+        resetGame();
+      }, 200);
     }
   };
 
@@ -86,6 +92,22 @@ let controlScreen = (gameBoard, firstplayerSymbol, secondplayerSymbol) => {
         addGameBoard();
       });
     });
+  };
+
+  let resetGame = () => {
+    for (let i = 0; i < gameBoard.length; i++) {
+      for (let j = 0; j < gameBoard[i].length; j++) {
+        gameBoard[i][j] = null;
+      }
+    }
+
+    let gameContainer = document.querySelector(".game-container");
+    while (gameContainer.firstChild) {
+      gameContainer.firstChild.textContent = "";
+      gameContainer.removeChild(gameContainer.firstChild);
+    }
+
+    addGameBoard();
   };
 
   return { beginGame };
@@ -163,20 +185,5 @@ function checkWinOrDraw(board) {
 
   return { win: false, draw: false };
 }
-
-let resetGame = () => {
-  for (let i = 0; i < gameBoard.length; i++) {
-    for (let j = 0; j < gameBoard[i].length; j++) {
-      gameBoard[i][j] = null;
-    }
-  }
-
-  let gameContainer = document.querySelector(".game-container");
-  while (gameContainer.firstChild) {
-    gameContainer.removeChild(gameContainer.firstChild);
-  }
-
-  addGameBoard();
-};
 
 playGame();

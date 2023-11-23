@@ -1,4 +1,6 @@
-let playGame = () => {};
+let playGame = () => {
+  createBoard();
+};
 
 function createBoard() {
   let gameBoard = [
@@ -9,13 +11,16 @@ function createBoard() {
   let firstPlayer = createPlayer("X");
   let secondPlayer = createPlayer("O");
   let computerPlayer = createPlayer("O");
-  let screen = controlScreen(gameBoard);
-
-  function initialiseBoard() {
-    gameBoard.forEach((cell) => {
-      const div = document.createElement("div");
-      div.classList.add("cell");
-    });
+  let isFirstTurn = true;
+  let isPlaying = true;
+  while (isPlaying) {
+    if (isFirstTurn) {
+      let screen = controlScreen(gameBoard, firstPlayer.playerSymbol);
+      screen.beginGame();
+    } else {
+      let screen = controlScreen(gameBoard, secondPlayer.playerSymbol);
+      een(gameBoard, firstPlayer.playerSymbol);
+    }
   }
 }
 
@@ -59,9 +64,10 @@ let controlScreen = (gameBoard, playerSymbol) => {
       });
     });
   };
+
+  return { beginGame };
 };
 
-let;
 //what does the display screen do?
 /*
   it returns functions for manipulating the screen.

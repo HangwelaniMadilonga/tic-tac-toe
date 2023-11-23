@@ -4,15 +4,13 @@ let playGame = () => {
 
 function createBoard() {
   let gameBoard = [
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
+    [null, null, null],
+    [null, null, null],
+    [null, null, null],
   ];
   let firstPlayer = createPlayer("X");
   let secondPlayer = createPlayer("O");
-  let computerPlayer = createPlayer("O");
 
-  let isPlaying = true;
   let screen = controlScreen(
     gameBoard,
     firstPlayer.playerSymbol,
@@ -50,15 +48,33 @@ let controlScreen = (gameBoard, firstplayerSymbol, secondplayerSymbol) => {
             playerSymbol = firstplayerSymbol;
           }
           const dataIndex = div.dataset.index;
-          const [i, j] = dataIndex.split("-").map(Number);
-          if (div.textContent === "") {
-            gameBoard[i][j] = playerSymbol;
-            div.textContent = gameBoard[i][j];
-            gameTracker = gameTracker + 1;
+          const [row, col] = dataIndex.split("-").map(Number);
+          if (div.textContent === "" && gameBoard[row][col] === null) {
+            gameBoard[row][col] = playerSymbol;
+            div.textContent = playerSymbol;
+            gameTracker++;
+            checkGameState();
           }
         });
       }
     }
+  };
+
+  let checkGameState = () => {
+    let result = checkWinOrDraw(gameBoard);
+    if (result.win) {
+      highlightWinningCells(result.winningCombination);
+      alert(result.winner + " wins!");
+    } else if (result.draw) {
+      alert("It's a draw!");
+    }
+  };
+
+  let highlightWinningCells = (winningCombination) => {
+    winningCombination.forEach(([row, col]) => {
+      let cell = document.querySelector(`[data-index="${row}-${col}"]`);
+      cell.style.backgroundColor = "green";
+    });
   };
 
   let beginGame = () => {
@@ -75,8 +91,77 @@ let controlScreen = (gameBoard, firstplayerSymbol, secondplayerSymbol) => {
   return { beginGame };
 };
 
-playGame();
-/*
-  for every div with class cell we can say that if the number is odd then it
+function checkWinOrDraw(board) {
+  for (let i = 0; i < 3; i++) {
+    if (
+      board[i][0] === board[i][1] &&
+      board[i][1] === board[i][2] &&
+      board[i][0] !== null
+    ) {
+      return {
+        win: true,
+        winner: board[i][0],
+        winningCombination: [
+          [i, 0],
+          [i, 1],
+          [i, 2],
+        ],
+      };
+    }
+    if (
+      board[0][i] === board[1][i] &&
+      board[1][i] === board[2][i] &&
+      board[0][i] !== null
+    ) {
+      return {
+        win: true,
+        winner: board[0][i],
+        winningCombination: [
+          [0, i],
+          [1, i],
+          [2, i],
+        ],
+      };
+    }
+  }
 
-  sdf*/
+  if (
+    board[0][0] === board[1][1] &&
+    board[1][1] === board[2][2] &&
+    board[0][0] !== null
+  ) {
+    return {
+      win: true,
+      winner: board[0][0],
+      winningCombination: [
+        [0, 0],
+        [1, 1],
+        [2, 2],
+      ],
+    };
+  }
+  if (
+    board[0][2] === board[1][1] &&
+    board[1][1] === board[2][0] &&
+    board[0][2] !== null
+  ) {
+    return {
+      win: true,
+      winner: board[0][2],
+      winningCombination: [
+        [0, 2],
+        [1, 1],
+        [2, 0],
+      ],
+    };
+  }
+
+  let isDraw = board.flat().every((cell) => cell !== null);
+  if (isDraw) {
+    return { draw: true };
+  }
+
+  return { win: false, draw: false };
+}
+
+playGame();
